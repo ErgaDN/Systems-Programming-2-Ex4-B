@@ -18,7 +18,10 @@ namespace ariel
 
     public:
         // Character(int hitTarget);
-        Character(const Point& location, int hitPoint, const std::string& name);
+        // Character(const Point& location, int hitPoint, const std::string& name);
+
+        Character(const std::string& name, const Point& location, int hitPoint);
+
         Character(const Character& other);
         // virtual ~Character() = default;
         ~Character() = default;

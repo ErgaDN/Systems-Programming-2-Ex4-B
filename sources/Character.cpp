@@ -5,8 +5,8 @@ using namespace ariel;
 
 // Character::Character(int hitTarget) : _hitTarget(hitTarget){}
 
-Character::Character(const Point &location, int hitPoint, const std::string &name)
-    : _location(location), _hitPoint(hitPoint), _name(name), _inTeam(false)
+Character::Character(const std::string& name, const Point& location, int hitPoint)
+    :  _name(name), _location(location), _hitPoint(hitPoint), _inTeam(false)
 {
 }
 
@@ -30,6 +30,7 @@ bool Character::isAlive() const
 
 double Character::distance(const Character *other) const
 {
+    // cout << "This point: " << getLocation().print() << "\nOther Point: " << other->getLocation().print() << "\nDistance: " << getLocation().distance(other->getLocation()) << endl;
     return getLocation().distance(other->getLocation());
 }
 
@@ -45,10 +46,10 @@ std::string Character::print()
 {
     if (isAlive())
     {
-        return getName() + " " + to_string(getHitPoint()) + " " + getLocation().print() + "\n";
+        return "Name: " + getName() + " HitPoint: " + to_string(getHitPoint()) + " Location:" + getLocation().print();
     }
     else
     {
-        return "(" + getName() + ") " + getLocation().print();
+        return "(Name: " + getName() + ") Location:" + getLocation().print();
     }
 }

@@ -4,7 +4,7 @@
 using namespace ariel;
 
 Ninja::Ninja(const Point &location, int hitTarget, const std::string &name, int speed)
-    : Character(location, hitTarget, name), _speed(speed) {}
+    : Character(name, location, hitTarget), _speed(speed) {}
 
 void Ninja::move(const Character *enemy) 
 {
