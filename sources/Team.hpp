@@ -1,7 +1,8 @@
-#ifndef TEAN_HPP
-#define TEAN_HPP
+#ifndef TEAM_HPP
+#define TEAM_HPP
 
 #include <vector>
+#include <stdexcept>
 
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
@@ -18,11 +19,16 @@ namespace ariel
         public:
             Team(Character* leader);
             // ~Team() = default;
+            Character* getLeader() const { return _leader; }
+            // void setLeader
 
             void add(Character* player);
             void attack(Team* enemies);
             int stillAlive();
-            std::string print() const;
+            void print() const;
+
+            Character* findClosestAliveFighter(const Team& enemyTeam, const Character* leader) const;
+            void attackTheEnemy(Character* attacker, Character* enemy);
    };
 }
 

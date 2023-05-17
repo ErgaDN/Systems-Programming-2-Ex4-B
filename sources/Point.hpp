@@ -11,7 +11,7 @@ namespace ariel
         double _x;
         double _y;
     public:
-        // Point();
+        Point();
         Point(double x, double y);
         // ~Point() = default;
 
@@ -21,8 +21,8 @@ namespace ariel
         void setY(const double num) { _y = num; }
 
         double distance(const Point& other) const;
-        string print();
-        Point moveTowards(const Point& source, const Point& dest, const double dis);
+        std::string print();
+        static Point moveTowards(const Point& source, const Point& dest,  double dis);
     };
 
 }

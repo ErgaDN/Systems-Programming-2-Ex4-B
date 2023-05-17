@@ -19,6 +19,8 @@ namespace ariel
         bool hasboolets() const;
         void reload();
         std::string print();
+
+        // void attack();
         
 
         friend std::ostream& operator<<(std::ostream& os, const Cowboy& cowboy);
@@ -26,5 +28,4 @@ namespace ariel
     };
 
 }
-
 #endif

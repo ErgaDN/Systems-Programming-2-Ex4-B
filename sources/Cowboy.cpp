@@ -11,10 +11,12 @@ void Cowboy::shoot(Character *enemy)
 {
     if (isAlive() && hasboolets())
     {
-        if (enemy->getHitPoint() >= 10)
-            enemy->setHitPoint(enemy->getHitPoint() - 10);
-        else
-            enemy->setHitPoint(0);
+        enemy->hit(10);
+        // enemy->reduceHitPoint(10);
+        // if (enemy->getHitPoint() >= 10)
+        //     enemy->setHitPoint(enemy->getHitPoint() - 10);
+        // else
+        //     enemy->setHitPoint(0);
         _ballsCount--;
     }
 }
@@ -30,10 +32,12 @@ void Cowboy::reload()
 
 std::string Cowboy::print()
 {
-    return "C\n" + Character::print();
+    return "C " + Character::print();
 }
 
 std::ostream &operator<<(std::ostream &os, const Cowboy &cowboy)
 {
     return os;
 }
+
+

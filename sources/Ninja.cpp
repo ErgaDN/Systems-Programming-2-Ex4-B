@@ -1,4 +1,5 @@
 #include "Ninja.hpp"
+// #include "Point.hpp"
 
 using namespace ariel;
 
@@ -7,17 +8,25 @@ Ninja::Ninja(const Point &location, int hitTarget, const std::string &name, int 
 
 void Ninja::move(const Character *enemy) 
 {
-    double dis = this->distance(enemy);
-    if (dis <= _speed)
+    Point temp = Point::moveTowards(getLocation(), enemy->getLocation(), getSpeed());
+    setLocation(temp);
+}
+
+void Ninja::slash(Character *enemy) 
+{
+    if (isAlive() && getLocation().distance(enemy->getLocation()) < 1)
     {
-        _location.setX(enemy->getLocation().getX());
-        _location.setY(enemy->getLocation().getY());
+        enemy->hit(40);
+        // enemy->reduceHitPoint(40);
     }
 }
 
-void Ninja::slash(Character *enemy) {}
-
 std::string Ninja::print()
 {
-    return "N\n" + Character::print();
+    return "N " + Character::print();
 }
+
+// void Ninja::attack()
+// {
+
+// }
