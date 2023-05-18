@@ -14,7 +14,8 @@ Team::Team(Character *leader) : _leader(leader)
         throw runtime_error( leader->getName() + " is already in team.");
     }
 
-    _fighters.push_back(leader);
+    // _fighters.push_back(leader);
+    pushFighterBack(leader);
     leader->setInTeam();
 }
 
@@ -50,7 +51,8 @@ void Team::add(Character *player)
     }
     else
     {
-        _fighters.push_back(player);
+        // _fighters.push_back(player);
+        pushFighterBack(player);
     }
     // else if (Ninja* ninja = dynamic_cast<Ninja *>(player))
     // {

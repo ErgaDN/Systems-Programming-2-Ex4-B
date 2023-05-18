@@ -13,14 +13,23 @@ namespace ariel
 {
    class Team
    {
-        protected:
+    private:
+        // protected:
             std::vector <Character*> _fighters;
             Character* _leader;
         public:
             Team(Character* leader);
             virtual ~Team();
+            Team(const Team&) = delete;
+            Team& operator=(const Team&) = delete;
+            Team(Team&&) = delete;
+            Team& operator=(Team&&) = delete;
+
+
             Character* getLeader() const { return _leader; }
              std::vector <Character*> getFighters() const { return _fighters; }
+            unsigned int sizeOfFighters() const { return _fighters.size(); }
+             void pushFighterBack(Character* fighter) { _fighters.push_back(fighter); }
             // void setLeader
 
             virtual void add(Character* player);

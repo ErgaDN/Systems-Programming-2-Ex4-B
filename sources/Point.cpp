@@ -20,6 +20,8 @@ string Point::print()
 
 Point Point::moveTowards(const Point &source, const Point &dest,  double dis)
 {
+    if (dis < 0)
+    throw invalid_argument("Negative distance");
     double disPoints = source.distance(dest);
     // cout << "disPoints = " << disPoints << endl; 
     if (disPoints <= dis)

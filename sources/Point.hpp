@@ -12,7 +12,7 @@ namespace ariel
         double _y;
     public:
         Point();
-        Point(double x, double y);
+        Point(double xxx, double yyy);
         // ~Point() = default;
 
         double getX() const { return _x; }

@@ -18,12 +18,12 @@ namespace ariel
         void shoot(Character* enemy);
         bool hasboolets() const;
         void reload();
-        std::string print();
+        std::string print() override;
 
         // void attack();
         
 
-        friend std::ostream& operator<<(std::ostream& os, const Cowboy& cowboy);
+        // friend std::ostream& operator<<(std::ostream& os, const Cowboy& cowboy);
 
     };
 

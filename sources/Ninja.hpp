@@ -7,8 +7,8 @@ namespace ariel
 {
     class Ninja : public Character
     {
-    protected:
-        int _speed;
+    private:
+        const int _speed;
     
     public:
         Ninja(const Point& location, int hitTarget, const std::string& name, int speed);
@@ -17,7 +17,7 @@ namespace ariel
         
         void move(const Character* enemy);
         void slash(Character* enemy);
-        std::string print();
+        std::string print() override;
         // void attack();
     };    
 }

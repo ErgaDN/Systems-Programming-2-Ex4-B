@@ -1,5 +1,6 @@
 #include "Cowboy.hpp"
 
+using namespace std;
 using namespace ariel;
 
 // Cowboy::Cowboy(Point location, int hitTarget, std::string name, int ballsCount)
@@ -9,17 +10,21 @@ Cowboy::Cowboy(const std::string &name, const Point &location)
 
 void Cowboy::shoot(Character *enemy)
 {
-    if (isAlive() && hasboolets())
+    if (this == enemy)
+        throw runtime_error("Can't shoot himself");
+    if (!isAlive())
+        throw runtime_error("Attacker is dead");
+    if (!enemy->isAlive())
+        throw runtime_error("Enemy is already dead");
+    
+    // if (isAlive() && hasboolets())
+    if (hasboolets())
     {
         enemy->hit(10);
-        // enemy->reduceHitPoint(10);
-        // if (enemy->getHitPoint() >= 10)
-        //     enemy->setHitPoint(enemy->getHitPoint() - 10);
-        // else
-        //     enemy->setHitPoint(0);
         _ballsCount--;
     }
 }
+
 bool Cowboy::hasboolets() const
 {
     return getBallsCount();
@@ -27,7 +32,9 @@ bool Cowboy::hasboolets() const
 
 void Cowboy::reload()
 {
-    _ballsCount += 6;
+    if (!isAlive())
+    throw runtime_error("Dead cowboy can not reload");
+    _ballsCount = 6;
 }
 
 std::string Cowboy::print()

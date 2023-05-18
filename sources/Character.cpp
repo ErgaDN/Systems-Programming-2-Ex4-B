@@ -30,12 +30,16 @@ bool Character::isAlive() const
 
 double Character::distance(const Character *other) const
 {
+    if (this == other)
+        throw runtime_error("Same Character");
     // cout << "This point: " << getLocation().print() << "\nOther Point: " << other->getLocation().print() << "\nDistance: " << getLocation().distance(other->getLocation()) << endl;
     return getLocation().distance(other->getLocation());
 }
 
-void Character::hit(const int num)
+void Character::hit(int num)
 {
+    if (num < 0)
+    throw invalid_argument("Negative number");
     if (num >= getHitPoint())
         setHitPoint(0);
     else

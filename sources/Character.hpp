@@ -11,10 +11,11 @@ namespace ariel
     {
     private:
         const std::string _name;
-    protected:
+        bool _inTeam;
+    // protected:
         Point _location;
         int _hitPoint;
-        bool _inTeam;
+        
 
     public:
         // Character(int hitTarget);
@@ -23,8 +24,11 @@ namespace ariel
         Character(const std::string& name, const Point& location, int hitPoint);
 
         Character(const Character& other);
-        // virtual ~Character() = default;
-        ~Character() = default;
+        virtual ~Character() = default;
+        Character& operator=(const Character&) = delete;
+        Character(Character&&) = delete;
+        Character& operator=(Character&&) = delete;
+        // ~Character() = default;
 
         std::string getName() const { return _name; }
         int getHitPoint() const { return _hitPoint; }
@@ -32,12 +36,12 @@ namespace ariel
         bool getInTeam() const { return _inTeam; }
         void setInTeam() { _inTeam = true; }
         void setHitPoint(const int num) { _hitPoint = num; }
-        void setLocation(const Point& p) { _location = p; }
+        void setLocation(const Point& location) { _location = location; }
         // void reduceHitPoint(const int num);
 
         bool isAlive() const;
         double distance(const Character* other) const;
-        void hit(const int num);
+        void hit(int num);
         virtual std::string print();
         // virtual void attack() {}
     };
