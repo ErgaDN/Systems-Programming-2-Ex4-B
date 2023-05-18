@@ -15,6 +15,6 @@ void Team2::add(Character* player)
         throw runtime_error("Team is full.");
 
     _fighters.push_back(player);
-    player->setInTeam(true);
+    player->setInTeam();
 
 }

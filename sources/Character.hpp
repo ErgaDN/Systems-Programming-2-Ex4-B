@@ -30,7 +30,7 @@ namespace ariel
         int getHitPoint() const { return _hitPoint; }
         Point getLocation() const { return _location; }
         bool getInTeam() const { return _inTeam; }
-        void setInTeam(bool temp) { _inTeam = temp; }
+        void setInTeam() { _inTeam = true; }
         void setHitPoint(const int num) { _hitPoint = num; }
         void setLocation(const Point& p) { _location = p; }
         // void reduceHitPoint(const int num);

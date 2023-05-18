@@ -15,7 +15,7 @@ Team::Team(Character *leader) : _leader(leader)
     }
 
     _fighters.push_back(leader);
-    leader->setInTeam(true);
+    leader->setInTeam();
 }
 
 Team::~Team()
@@ -38,29 +38,34 @@ void Team::add(Character *player)
     if (Cowboy* cowboy = dynamic_cast<Cowboy *>(player))
     {
         // _fighters.insert(_fighters.begin(), player);
-        for (unsigned int i = 0 ; i < 10 ; ++i)
-        {
-            if (_fighters[i] == nullptr)
-            {
-                _fighters[i] = cowboy;
-                break;
-            }
-        }
+        // for (unsigned int i = 0 ; i < 10 ; ++i)
+        // {
+        //     if (_fighters[i] == nullptr)
+        //     {
+        //         _fighters[i] = cowboy;
+        //         break;
+        //     }
+        // }
+        _fighters.insert(_fighters.begin(),player);
     }
-    else if (Ninja* ninja = dynamic_cast<Ninja *>(player))
+    else
     {
-        for (unsigned int i = 9 ; i >= 0 ; --i)
-        {
-            if (_fighters[i] == nullptr)
-            {
-                _fighters[i] = player;
-                break;
-            }
-        }
+        _fighters.push_back(player);
     }
+    // else if (Ninja* ninja = dynamic_cast<Ninja *>(player))
+    // {
+    //     for (unsigned int i = 9 ; i >= 0 ; --i)
+    //     {
+    //         if (_fighters[i] == nullptr)
+    //         {
+    //             _fighters[i] = player;
+    //             break;
+    //         }
+    //     }
+    // }
 
     // _fighters.push_back(player);
-    player->setInTeam(true);
+    player->setInTeam();
 }
 
 void Team::attack(Team *enemyTeam)
