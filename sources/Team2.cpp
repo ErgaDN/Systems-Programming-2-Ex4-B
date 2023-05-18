@@ -3,9 +3,9 @@
 using namespace std;
 using namespace ariel;
 
-Team2::Team2(Character* leader) : Team(leader) {}
+Team2::Team2(Character *leader) : Team(leader) {}
 
-void Team2::add(Character* player)
+void Team2::add(Character *player)
 {
     if (player == nullptr)
         throw invalid_argument("Character is nullptr");
@@ -15,8 +15,7 @@ void Team2::add(Character* player)
         throw runtime_error("Team is full.");
     if (player->getInTeam())
         throw runtime_error("Character already in game.");
-    
-    // _fighters.push_back(player);
+
     pushFighterBack(player);
     player->setInTeam();
 }

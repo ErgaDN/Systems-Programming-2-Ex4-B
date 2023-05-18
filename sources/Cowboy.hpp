@@ -9,23 +9,17 @@ namespace ariel
     {
     private:
         int _ballsCount;
+
     public:
-        // Cowboy(Point location, int hitTarget, std::string name, int ballsCount);
-        Cowboy(const std::string& name, const Point& location);
-        // ~Cowboy() = default;
+        /* Constructor */
+        Cowboy(const std::string &name, const Point &location);
+
         int getBallsCount() const { return _ballsCount; }
 
-        void shoot(Character* enemy);
+        void shoot(Character *enemy);
         bool hasboolets() const;
         void reload();
         std::string print() override;
-
-        // void attack();
-        
-
-        // friend std::ostream& operator<<(std::ostream& os, const Cowboy& cowboy);
-
     };
-
 }
 #endif

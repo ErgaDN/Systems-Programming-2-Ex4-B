@@ -9,17 +9,17 @@ namespace ariel
     {
     private:
         const int _speed;
-    
+
     public:
-        Ninja(const Point& location, int hitTarget, const std::string& name, int speed);
-        // ~Ninja() = default;
+        /* Constructors */
+        Ninja(const Point &location, int hitTarget, const std::string &name, int speed);
+
         int getSpeed() const { return _speed; }
-        
-        void move(const Character* enemy);
-        void slash(Character* enemy);
+
+        void move(const Character *enemy);
+        void slash(Character *enemy);
         std::string print() override;
-        // void attack();
-    };    
+    };
 }
 
-#endif 
+#endif
