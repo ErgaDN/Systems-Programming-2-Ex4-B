@@ -39,10 +39,10 @@ std::string Character::print()
 {
     if (isAlive())
     {
-        return "Name: " + getName() + " HitPoint: " + to_string(getHitPoint()) + " Location:" + getLocation().print();
+        return "[Name] " + getName() + " [HitPoint] " + to_string(getHitPoint()) + " [Location] " + getLocation().print();
     }
     else
     {
-        return "(Name: " + getName() + ") Location:" + getLocation().print();
+        return "[Name] (" + getName() + ") [Location] " + getLocation().print();
     }
 }

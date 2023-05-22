@@ -32,5 +32,5 @@ void Ninja::slash(Character *enemy)
 
 std::string Ninja::print()
 {
-    return "N " + Character::print();
+    return "[N] " + Character::print();
 }

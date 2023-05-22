@@ -11,11 +11,12 @@ namespace ariel
     {
     private:
         bool _attacked;
+
     public:
         /* constructor */
         SmartTeam(Character *leader);
-        void add(Character *player) override;
         void attack(Team *enemyTeam) override;
+        Character *bestEnemyToAttack(Character *attacker, Team *enemyTeam);
     };
 
 }

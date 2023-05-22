@@ -5,21 +5,6 @@ using namespace ariel;
 
 SmartTeam::SmartTeam(Character *leader) : Team(leader), _attacked(false) {}
 
-void SmartTeam::add(Character *player)
-{
-    if (player == nullptr)
-        throw invalid_argument("Character is nullptr");
-    if (!player->isAlive())
-        throw runtime_error("Character is dead.");
-    if (sizeOfFighters() == 10)
-        throw runtime_error("Team is full.");
-    if (player->getInTeam())
-        throw runtime_error("Character already in game.");
-
-    pushFighterBack(player);
-    player->setInTeam();
-}
-
 void SmartTeam::attack(Team *enemyTeam)
 {
     if (enemyTeam == nullptr)
@@ -27,18 +12,61 @@ void SmartTeam::attack(Team *enemyTeam)
     if (enemyTeam->stillAlive() == 0 || this->stillAlive() == 0)
         throw runtime_error("Team members die.");
 
-    Character *closeEnemy = nullptr;
+    /* chose new leader for the team */
+    if (!getLeader()->isAlive())
+        setLeader(Team::findClosestAliveFighter(*this, getLeader()));
+
+    Character *enemyToAttack = nullptr;
 
     for (Character *attacker : getFighters())
     {
         if (!attacker->isAlive())
             continue;
-        if (enemyTeam->stillAlive() == 0)
-            break;
-        
-        closeEnemy = findClosestAliveFighter(*enemyTeam, attacker);
+        if (enemyTeam->stillAlive() == 0 || this->stillAlive() == 0)
+            return;
 
-        attackTheEnemy(attacker, closeEnemy);
+        enemyToAttack = bestEnemyToAttack(attacker, enemyTeam);
+
+        if (enemyToAttack == nullptr)
+            continue;
+
+        Team::attackTheEnemy(attacker, enemyToAttack);
     }
 }
 
+Character *SmartTeam::bestEnemyToAttack(Character *attacker, Team *enemyTeam)
+{
+    int priority = numeric_limits<int>::max();
+    Character *bestEnemy = nullptr;
+
+    for (Character *enemy : enemyTeam->getFighters())
+    {
+        if (!enemy->isAlive())
+            continue;
+
+        if (Cowboy *cowboy = dynamic_cast<Cowboy *>(attacker))
+        {
+            if (enemy->getHitPoint() <= 10)
+                return enemy;
+
+            if (enemy->getHitPoint() / 10 < priority)
+            {
+                priority = enemy->getHitPoint() / 10;
+                bestEnemy = enemy;
+            }
+        }
+        else if (Ninja *ninja = dynamic_cast<Ninja *>(attacker))
+        {
+            double dis = attacker->distance(enemy);
+            if (dis < 1 && enemy->getHitPoint() <= 40)
+                return enemy;
+
+            if (dis < priority)
+            {
+                priority = dis;
+                bestEnemy = enemy;
+            }
+        }
+    }
+    return bestEnemy;
+}

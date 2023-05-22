@@ -36,5 +36,5 @@ void Cowboy::reload()
 
 std::string Cowboy::print()
 {
-    return "C " + Character::print();
+    return "[C] " + Character::print();
 }
